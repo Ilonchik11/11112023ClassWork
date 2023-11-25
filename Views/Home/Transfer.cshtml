@@ -1,0 +1,69 @@
+﻿@model _11112023ClassWork.Models.Home.TransferViewModel
+@{
+    ViewData["Title"] = "Transfer";
+}
+<h1 class="display-4">Передача даних</h1>
+<p>
+    В ASP виконується дещо не традиційне для MVC розуміння моделей - тут це 
+    об'єкти, призначені для трансферу (передачі) даних між контролерами та 
+    представленнями. Представлення за замовчанням мають властивість "Model", 
+    але для її використання слід зазначити її тип даних інструкцією 
+    &commat;model на початку представлення. 
+    Властивість "Model" є тим параметром, що передається з виклику 
+    <code>return View(model);</code>
+</p>
+<p>
+    Моделі умовно поділяються за своїм призначенням. <br/>
+    ViewModel (PageModel) - набір даних для представлення <br/>
+    FormModel - дані від представлення (html-form) <br/>
+    Entity (DTO) - об'єкти, які відображають дані у сховищі (частише за все - 
+    у БД)
+</p>
+<p>
+    Передача даних форм спряжена з додатковою проблемою повторного надсилання 
+    даних при оновленні сторінки. Відповідно, запит, який приймає дані, має 
+    завершитись перенаправленням (Redirect). Це змусить браузер надіслати 
+    повторний запит без параметрів. Але з боку сервера слід реалізувати 
+    збереження даних між запитами. Для цього слугує механізм сесій. 
+    <b>Сесія (HTTP-сесія)</b> - механізм збереження даних на боці сервера з їх
+    прив'язуванням до запиту шляхом Cookie-параметрів. 
+</p>
+<form asp-action="ProcessTransferForm" method="post">
+    <div class="input-group">
+        <span class="input-group-text">First and last name</span>
+        <input name="user-firstname" type="text" aria-label="First name" class="form-control">
+        <input name="user-lastname" type="text" aria-label="Last name" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-success">Send</button>
+</form>
+@if(Model.FormModel?.UserFirstname != null)
+{
+    <p>
+        Є передача даних форми: 
+        @Model.FormModel.UserFirstname,
+        @Model.FormModel.UserLastname
+    </p>
+}
+<br/>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Параметр</th>
+            <th>Значення</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Дата</td>
+            <td>@Model.Date</td>
+        </tr>
+        <tr>
+            <td>Час</td>
+            <td>@Model.Time</td>
+        </tr>
+        <tr>
+            <td>Контролер</td>
+            <td>@Model.ControllerName</td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,49 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.restaurant-list, .country-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.restaurant-list li, .country-list li {
+    border-radius: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 5px;
+    padding: 10px;
+}
+
+.restaurant-list li {
+    background-color: #add89b;
+    border: 1px solid blue;
+}
+
+.restaurant-list h3 {
+    color: blueviolet;
+}
+
+.country-list li {
+    background-color: blueviolet;
+    border: 2px solid #000000;
+    color: white;
+}
+
+.country-list h3 {
+    color: white;
+}

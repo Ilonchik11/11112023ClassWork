@@ -1,0 +1,17 @@
+﻿@model _11112023ClassWork.Models.Home.Task4ViewModel
+@{
+    ViewData["Title"] = "Task4";
+    <link rel="stylesheet" href="~/css/site.css"/>
+}
+<h1>List of Restaurants</h1>
+@if (Model.Restaurants == null) return;
+<ul class="restaurant-list">
+    @foreach (var restaurant in Model.Restaurants)
+    {
+        <li>
+            <h3>@restaurant.RestaurantName</h3>
+            <p><strong>Address: </strong> @restaurant.Address</p>
+            <p><strong>Phone Number: </strong> @restaurant.PhoneNumber</p>
+        </li>
+    }
+</ul>

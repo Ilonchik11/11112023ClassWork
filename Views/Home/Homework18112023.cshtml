@@ -1,0 +1,56 @@
+﻿@model _11112023ClassWork.Models.Home.UserViewModel
+@{
+    ViewData["Title"] = "Homework Page";
+}
+<h1 class="display-4">Form</h1>
+<form asp-action="ProcessHomework18112023Form" method="post">
+    <div class="input-group" style="margin-bottom: 10px;">
+        <span class="input-group-text">First and last name</span>
+        <input name="user-name" type="text" aria-label="Name" class="form-control">
+        <input name="user-phone" type="text" aria-label="Phone" class="form-control">
+        <input name="user-email" type="text" aria-label="Email" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-success" style="margin-bottom: 5px;">Send</button>
+</form>
+
+@if (Model?.FormModel?.Name != null && Model.ValidationResult != null)
+{
+    <h3><span style="color: purple;">Results of Validation:</span></h3>
+
+    <p>
+        Name: @if (Model.ValidationResult.IsNameValid)
+        {
+            <span style="color: green;">@(Model.FormModel.Name) - valid</span>
+        }
+        else
+        {
+            <span style="color: red;">@(Model.FormModel.Name) - invalid</span>
+        }
+    </p>
+
+    <p>
+        Phone: @if (Model.ValidationResult.IsPhoneValid)
+        {
+            <span style="color: green;">@(Model.FormModel.Phone) - valid</span>
+        }
+        else
+        {
+            <span style="color: red;">@(Model.FormModel.Phone) - invalid</span>
+        }
+    </p>
+
+    <p>
+        Email: @if (Model.ValidationResult.IsEmailValid)
+        {
+            <span style="color: green;">@(Model.FormModel.Email) - valid</span>
+        }
+        else
+        {
+            <span style="color: red;">@(Model.FormModel.Email) - invalid</span>
+        }
+    </p>
+}
+else
+{
+    <p>Fill in all the information</p>
+}
